@@ -40,6 +40,13 @@ services:
     build: ./chatbot
     networks: [app-network]
     depends_on: [api-gateway]
+
+  frontend:
+    build: ./frontend
+    networks: [app-network]
+    ports:
+    - "4200:80"
+    depends_on: [api-gateway]
   
   # backoffice:
   #   build:
@@ -59,7 +66,6 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./certbot/www:/var/www/certbot
       - ./certbot/conf:/etc/letsencrypt
-      # - ../backoffice/backoffice/dist/backoffice/browser:/usr/share/nginx/html
     ports:
       - "80:80"
       # - "443:443"

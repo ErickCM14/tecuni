@@ -9,7 +9,7 @@ const connectDB = async () => {
     return;
   }
   try {
-    const mongoUri = process.env.MONGO_URI ||  'mongodb://admin:Admin2025.-Db@mongodb:27017/demoAPP?authSource=admin';
+    const mongoUri = process.env.MONGO_URI ||  'mongodb://admin:Admin2025.-Db@mongodb:27017/tecuni?authSource=admin';
 
     const conn = await mongoose.connect(mongoUri, {
       //   useNewUrlParser: true,
@@ -19,6 +19,7 @@ const connectDB = async () => {
     });
 
     isConnected = true;
+    console.log(`✅ Conectado a MongoDB en: ${mongoUri}`);
     console.log(`✅ Conectado a MongoDB en: ${conn.connection.host}`);
   } catch (error) {
     isConnected = false;

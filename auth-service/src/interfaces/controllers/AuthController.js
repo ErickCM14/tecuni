@@ -16,10 +16,10 @@ class AuthController extends Controller {
   }
 
   auth = async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
     try {
-      const result = await this.authUseCase.auth(username, password);
+      const result = await this.authUseCase.auth(email, password);
 
       if (!result.success) {
         return this.sendResponse(res, result.message, null, false);

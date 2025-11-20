@@ -26,7 +26,16 @@ app.use(cors({
   allowedHeaders: 'Content-Type, Authorization'
 }));
 app.use(express.json());
-app.set('trust proxy', true);
+// app.set('trust proxy', true);
+
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+const proxyValue = process.env.PROXY;
+
+if (proxyValue === 'false' || proxyValue === undefined) {
+  app.set('trust proxy', false);
+} else {
+  app.set('trust proxy', 1);
+}
 // app.use(rateLimit({ windowMs: 60_000, max: 100 }));
 
 // Logger simple
