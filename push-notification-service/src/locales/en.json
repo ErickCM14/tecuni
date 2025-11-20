@@ -1,0 +1,81 @@
+{
+    "validation": {
+        "any": {
+            "base": "The field {{field}} does not match the required format.",
+            "required": "The {{field}} field is required.",
+            "only": "The {{field}} field must be one of the allowed values.",
+            "unknown": "The {{field}} is unknown."
+        },
+        "string": {
+            "base": "The field {{field}} does not match the required format.",
+            "min": "The {{field}} field must be at least {{param}} characters long.",
+            "max": "The {{field}} field must not exceed {{param}} characters.",
+            "email": "The {{field}} field must be a valid email address.",
+            "pattern": {
+                "base": "The {{field}} field does not match the required format."
+            },
+            "uri": "The {{field}} field must be a valid uri.",
+            "empty": "The {{field}} field must not be empty.",
+            "alphanum": "The {{field}} field must contain only alphanumeric characters."
+        },
+        "number": {
+            "base": "The field {{field}} does not match the required format.",
+            "min": "The {{field}} field must be greater than or equal to {{param}}.",
+            "max": "The {{field}} field must be less than or equal to {{param}}."
+        },
+        "array": {
+            "base": "The field {{field}} does not match the required format.",
+            "min": "The {{field}} field must have at least {{param}} item(s).",
+            "unique": "The field {{field}} must have unique values.",
+            "length": "The {{field}} field must have {{param}} item(s)."
+        },
+        "object": {
+            "base": "The field {{field}} does not match the required format.",
+            "min": "The {{field}} field must have at least {{param}} key(s).",
+            "unknown": "The {{field}} is not allowed."
+        },
+        "boolean": {
+            "base": "The {{field}} field does not match the required format."
+        }
+    },
+    "labels": {
+        "name": "name",
+        "email": "email",
+        "phone": "phone number",
+        "password": "password",
+        "photo": "photo",
+        "url": "url",
+        "roles": "roles",
+        "permissions": "permissions",
+        "tag": "tag",
+        "description": "description",
+        "code": "code",
+        "icon": "icon",
+        "color": "color",
+        "translations": "translations",
+        "categoryId": "category ID",
+        "lang": "lang",
+        "questions": "questions",
+        "notificationType": "question type",
+        "objectNotificationType": "question type object",
+        "translationsResponse": "response translations",
+        "translationsQuestion": "question translations",
+        "labelTranslationQuestion": "label - question translation",
+        "labelTranslationResponse": "label - response translation",
+        "responseValue": "response value",
+        "responseOrder": "response order",
+        "responsesQuestions": "question responses"
+    },
+    "messages": {
+        "already_exists": "Already exists",
+        "error": "Error",
+        "not_found": "Not Found",
+        "success": "Success",
+        "successful_login": "Successful login",
+        "successfully_created": "Successfully created",
+        "successfully_deleted": "Successfully deleted",
+        "successfully_registered": "Successfully registered",
+        "successfully_retrived": "Successfully retrieved",
+        "successfully_updated": "Successfully updated"
+    }
+}

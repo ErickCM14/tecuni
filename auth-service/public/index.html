@@ -1,0 +1,68 @@
+<html>
+
+<head>
+  <title>Express</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+  <h1>Express</h1>
+  <p>Welcome to Express</p>
+  <button id="loginBtnGoogle">Login con Google</button>
+  <button id="loginBtnFB">Login con Facebook</button>
+  <script type="module">
+    // GOOGLE
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD60o_xv7UkOr786Slnbb7FOLMpN6WLr6M",
+      authDomain: "idkyet-5f249.firebaseapp.com",
+      projectId: "idkyet-5f249",
+      storageBucket: "idkyet-5f249.firebasestorage.app",
+      messagingSenderId: "990891167892",
+      appId: "1:990891167892:web:84e4880cb0c281dc396481"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const providerGoogle = new GoogleAuthProvider();
+    const providerFB = new FacebookAuthProvider();
+
+    document.getElementById('loginBtnGoogle').addEventListener('click', async () => {
+      try {
+        const result = await signInWithPopup(auth, providerGoogle);
+        const user = result.user;
+        const token = await user.getIdToken();
+        console.log("✅ ID Token:", token);
+        // // alert("ID Token copiado en consola");
+
+        // FACEBOOK
+        // const credential = FacebookAuthProvider.credentialFromResult(result);
+        // const accessToken = credential.accessToken;
+        // console.log("✅ ID Access Token:", accessToken);
+      } catch (error) {
+        console.error("❌ Errors:", error);
+      }
+    });
+    document.getElementById('loginBtnFB').addEventListener('click', async () => {
+      try {
+        const result = await signInWithPopup(auth, providerFB);
+        const user = result.user;
+        const token = await user.getIdToken();
+        console.log("✅ ID Token:", token);
+        // // alert("ID Token copiado en consola");
+
+        // FACEBOOK
+        // const credential = FacebookAuthProvider.credentialFromResult(result);
+        // const accessToken = credential.accessToken;
+        // console.log("✅ ID Access Token:", accessToken);
+      } catch (error) {
+        console.error("❌ Errsor:", error);
+      }
+    });
+  </script>
+
+</body>
+
+</html>

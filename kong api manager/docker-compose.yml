@@ -1,0 +1,102 @@
+version: "3.8"
+
+services:
+  api1:
+    build: .
+    container_name: api1
+    ports:
+      - "3002:3002"
+    environment:
+      - INSTANCE_NAME=api1
+    networks:
+      - apinet
+
+  api2:
+    build: .
+    container_name: api2
+    ports:
+      - "3003:3002"
+    environment:
+      - INSTANCE_NAME=api2
+    networks:
+      - apinet
+
+  api3:
+    build: .
+    container_name: api3
+    ports:
+      - "3004:3002"
+    environment:
+      - INSTANCE_NAME=api3
+    networks:
+      - apinet
+
+  api4:
+    build: .
+    container_name: api4
+    ports:
+      - "3005:3002"
+    environment:
+      - INSTANCE_NAME=api4
+    networks:
+      - apinet
+
+  api5:
+    build: .
+    container_name: api5
+    ports:
+      - "3006:3002"
+    environment:
+      - INSTANCE_NAME=api5
+    networks:
+      - apinet
+
+  kong:
+    image: kong/kong:latest
+    container_name: kong
+    environment:
+      KONG_DATABASE: "off"
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_ERROR_LOG: /dev/stderr
+      KONG_DECLARATIVE_CONFIG: /kong/declarative/kong.yml
+    ports:
+      - "8000:8000"    # Proxy
+      - "8443:8443"    # Proxy SSL
+      - "8001:8001"    # Admin API
+    volumes:
+      - ./kong-declarative:/kong/declarative
+    networks:
+      - apinet
+
+  influxdb:
+    image: influxdb:1.8
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    environment:
+      - INFLUXDB_DB=k6
+      - INFLUXDB_HTTP_AUTH_ENABLED=false
+    networks:
+      - apinet
+    volumes:
+      - influxdb:/var/lib/influxdb
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - apinet
+    volumes:
+      - grafana:/var/lib/grafana
+
+networks:
+  apinet:
+    driver: bridge
+
+volumes:
+  influxdb:
+  grafana:

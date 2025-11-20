@@ -1,0 +1,28 @@
+// src/fcm/FirebaseNotificationService.js
+const axios = require('axios');
+const { getAccessToken } = require('./getAccessToken');
+
+class FirebaseNotificationService {
+  constructor({ projectId }) {
+    this.endpoint = `https://fcm.googleapis.com/v1/projects/${projectId}/messages:send`;
+  }
+
+  /**
+   * payload = { message: { token|topic|condition, notification, data, android, apns, webpush } }
+   * Devuelve data de FCM o lanza error con detalle.
+   */
+  async send(payload) {
+    const accessToken = await getAccessToken();
+    const { data } = await axios.post(this.endpoint, payload, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json; charset=UTF-8'
+      },
+      timeout: 10000
+    });
+    return data; // típicamente { name: 'projects/.../messages/XXXX' }
+  }
+}
+
+module.exports = { FirebaseNotificationService };
+

@@ -1,0 +1,81 @@
+{
+    "validation": {
+        "any": {
+            "base": "El campo {{field}} no cumple con el formato requerido.",
+            "required": "El campo {{field}} es obligatorio.",
+            "only": "El campo {{field}} debe ser uno de los valores permitidos.",
+            "unknown": "El campo {{field}} no está permitido."
+        },
+        "string": {
+            "base": "El campo {{field}} no cumple con el formato requerido.",
+            "min": "El campo {{field}} debe tener al menos {{param}} caracteres.",
+            "max": "El campo {{field}} no puede exceder {{param}} caracteres.",
+            "email": "El campo {{field}} debe ser un correo válido.",
+            "pattern": {
+                "base": "El campo {{field}} no cumple con el formato requerido."
+            },
+            "uri": "El campo {{field}} debe ser un uri válido.",
+            "empty": "El campo {{field}} no debe estar vacío.",
+            "alphanum": "El campo {{field}} debe contener únicamente caracteres alfanuméricos."
+        },
+        "number": {
+            "base": "El campo {{field}} no cumple con el formato requerido.",
+            "min": "El campo {{field}} debe ser mayor o igual que {{param}}.",
+            "max": "El campo {{field}} debe ser menor o igual que {{param}}."
+        },
+        "array": {
+            "base": "El campo {{field}} no cumple con el formato requerido.",
+            "min": "El campo {{field}} debe tener al menos {{param}} elemento(s).",
+            "unique": "El campo {{field}} debe tener valores únicos.",
+            "length": "El campo {{field}} debe contener {{param}} elemento(s)."
+        },
+        "object": {
+            "base": "El campo {{field}} no cumple con el formato requerido.",
+            "min": "El campo {{field}} debe tener al menos {{param}} clave(s).",
+            "unknown": "El campo {{field}} no está permitido."
+        },
+        "boolean": {
+            "base": "El campo {{field}} no tiene un formato booleano válido."
+        }
+    },
+    "labels": {
+        "name": "nombre",
+        "email": "correo electrónico",
+        "phone": "celular",
+        "password": "contraseña",
+        "photo": "foto",
+        "url": "url",
+        "roles": "roles",
+        "permissions": "permisos",
+        "tag": "etiqueta",
+        "description": "descripción",
+        "code": "código",
+        "icon": "icono",
+        "color": "color",
+        "translations": "traducciones",
+        "categoryId": "ID categorias",
+        "lang": "idioma",
+        "questions": "notificación",
+        "notificationType": "Tipo de notificación",
+        "objectNotificationType": "objeto del tipo de notificación",
+        "translationsResponse": "traducciones de notificación",
+        "translationsQuestion": "traducciones de notificación",
+        "labelTranslationQuestion": "label - traducción de notificación",
+        "labelTranslationResponse": "label - traducción de notificación",
+        "responseValue": "valor de notificación",
+        "responseOrder": "orden de notificación",
+        "responsesQuestions": "notificación de preguntas"
+    },
+    "messages": {
+        "already_exists": "Ya existe",
+        "error": "Error",
+        "not_found": "No encontrado",
+        "success": "Éxito",
+        "successful_login": "Inicio de sesión con éxito",
+        "successfully_created": "Creado con éxito",
+        "successfully_deleted": "Eliminado con éxito",
+        "successfully_registered": "Registrado con éxito",
+        "successfully_retrived": "Recuperado con éxito",
+        "successfully_updated": "Actualizado con éxito"
+    }
+}

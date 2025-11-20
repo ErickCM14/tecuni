@@ -1,0 +1,55 @@
+{
+    "validation": {
+        "any": {
+            "required": "The {{field}} field is required."
+        },
+        "string": {
+            "min": "The {{field}} field must be at least {{param}} characters long.",
+            "max": "The {{field}} field must not exceed {{param}} characters.",
+            "email": "The {{field}} field must be a valid email address.",
+            "pattern": {
+                "base": "The {{field}} field does not match the required format."
+            },
+            "uri": "The {{field}} field must be a valid uri.",
+            "empty": "The {{field}} field must not be empty."
+        },
+        "number": {
+            "min": "The {{field}} field must be greater than or equal to {{param}}.",
+            "max": "The {{field}} field must be less than or equal to {{param}}."
+        },
+        "array": {
+            "base": "The field {{field}} does not match the required format.",
+            "unique": "The field {{field}} must have unique values."
+        },
+        "object": {
+            "unknown": "The field {{field}} is not allowed."
+        }
+    },
+    "labels": {
+        "name": "name",
+        "email": "email",
+        "phone": "phone number",
+        "password": "password",
+        "photo": "photo",
+        "url": "url",
+        "roles": "roles",
+        "permissions": "permissions",
+        "tag": "tag",
+        "description": "description",
+        "key": "key",
+        "value": "value",
+        "group": "group"
+    },
+    "messages": {
+        "already_exists": "Already exists",
+        "error": "Error",
+        "not_found": "Not Found",
+        "success": "Success",
+        "successful_login": "Successful login",
+        "successfully_created": "Successfully created",
+        "successfully_deleted": "Successfully deleted",
+        "successfully_registered": "Successfully registered",
+        "successfully_retrived": "Successfully retrieved",
+        "successfully_updated": "Successfully updated"
+    }
+}

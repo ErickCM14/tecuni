@@ -1,0 +1,66 @@
+{
+    "validation": {
+        "any": {
+            "required": "The {{field}} field is required."
+        },
+        "string": {
+            "base": "The {{field}} field does not match the required format.",
+            "min": "The {{field}} field must be at least {{param}} characters long.",
+            "max": "The {{field}} field must not exceed {{param}} characters.",
+            "email": "The {{field}} field must be a valid email address.",
+            "pattern": {
+                "base": "The {{field}} field does not match the required format."
+            },
+            "uri": "The {{field}} field must be a valid uri.",
+            "empty": "The {{field}} field must not be empty."
+        },
+        "number": {
+            "base": "The {{field}} field does not match the required format.",
+            "min": "The {{field}} field must be greater than or equal to {{param}}.",
+            "max": "The {{field}} field must be less than or equal to {{param}}."
+        },
+        "array": {
+            "base": "The {{field}} field does not match the required format.",
+            "unique": "The {{field}} field must have unique values."
+        },
+        "date": {
+            "base": "The {{field}} field does not match the required format.",
+            "greater": "The {{field}} field must be greater than or equal to {{param}}.",
+            "less": "The {{field}} field must be less than or equal to {{param}}.",
+            "format": "The {{field}} field does not match the required format."
+        },
+        "object": {
+            "unknown": "The {{field}} is unknown."
+        },
+        "boolean": {
+            "base": "The {{field}} field does not match the required format."
+        }
+    },
+    "labels": {
+        "name": "name",
+        "lastname": "lastname",
+        "email": "email",
+        "phone": "phone number",
+        "password": "password",
+        "photo": "photo",
+        "dob": "dob",
+        "country": "country",
+        "school": "school",
+        "graduation_year": "graduation year",
+        "url": "url",
+        "socialToken": "social media token",
+        "terms": "terms and conditions"
+    },
+    "messages": {
+        "already_exists": "Already exists",
+        "error": "Error",
+        "not_found": "Not Found",
+        "success": "Success",
+        "successful_login": "Successful login",
+        "successfully_created": "Successfully created",
+        "successfully_deleted": "Successfully deleted",
+        "successfully_registered": "Successfully registered",
+        "successfully_retrived": "Successfully retrieved",
+        "successfully_updated": "Successfully updated"
+    }
+}
