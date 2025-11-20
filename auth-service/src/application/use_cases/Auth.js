@@ -58,7 +58,7 @@ class AuthUseCase {
         }
     }
 
-    async register(body, typeIdentity) {
+    async register(body, typeIdentity = 'email') {
         try {
             const { email, username, lastname, name, phone, password, dob, country, state, photo } = body;
             let user;

@@ -1,5 +1,5 @@
 # Usa Node 22.14.0 (usa 22.1.0 si aún no está 22.14.0 en Docker Hub)
-FROM node:22
+FROM node:22-alpine
 
 WORKDIR /app
 

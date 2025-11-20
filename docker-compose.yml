@@ -62,7 +62,7 @@ services:
       # - ../backoffice/backoffice/dist/backoffice/browser:/usr/share/nginx/html
     ports:
       - "80:80"
-      - "443:443"
+      # - "443:443"
     depends_on: [api-gateway]
     networks: [app-network]
 
