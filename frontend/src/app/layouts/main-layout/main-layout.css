@@ -1,0 +1,2 @@
+/* estilos mínimos del layout; adapta al tema global */
+.app-main { padding: 1rem; min-height: calc(100vh - 60px); }

@@ -1,0 +1,36 @@
+<div class="table-container">
+    <!-- <mat-form-field appearance="outline" class="filter-input">
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Buscar..." />
+        <button mat-icon-button matSuffix>
+            <mat-icon>search</mat-icon>
+        </button>
+    </mat-form-field> -->
+
+    <table mat-table [dataSource]="data" matSort class="mat-elevation-z8">
+        <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ headers[col] || col | titlecase }}
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element[col] }}</td>
+        </ng-container>
+
+        <ng-container *ngIf="rowActionsTemplate" matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let row">
+                <ng-container *ngTemplateOutlet="rowActionsTemplate; context: { $implicit: row }"></ng-container>
+            </td>
+        </ng-container>
+
+        <!-- Agrega la columna de acciones al final -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns.concat(rowActionsTemplate ? ['actions'] : [])"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns.concat(rowActionsTemplate ? ['actions'] : [])"></tr>
+
+    </table>
+
+    <mat-paginator [length]="total" [pageIndex]="page - 1" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20, 50]"
+        (page)="onPage($event)">
+    </mat-paginator>
+
+
+</div>

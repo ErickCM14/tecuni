@@ -1,0 +1,121 @@
+<div class="container mt-4">
+    <div class="card-header">
+        <h3 class="mb-0">{{ editMode ? 'Editar' : 'Crear' }} Notificación Push</h3>
+    </div>
+
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row g-3">
+
+                <!-- Título -->
+                <div class="col-md-6">
+                    <label for="title" class="form-label">Título</label>
+                    <input type="text" id="title" class="form-control" formControlName="title"
+                        [ngClass]="{'is-invalid': form.get('title')?.invalid && form.get('title')?.touched}" />
+                    <div class="invalid-feedback">
+                        El título es obligatorio.
+                    </div>
+                </div>
+
+                <!-- Mensaje -->
+                <div class="col-md-6">
+                    <label for="body" class="form-label">Mensaje</label>
+                    <input type="text" id="body" class="form-control" formControlName="body"
+                        [ngClass]="{'is-invalid': form.get('body')?.invalid && form.get('body')?.touched}" />
+                    <div class="invalid-feedback">
+                        El mensaje es obligatorio.
+                    </div>
+                </div>
+
+                <!-- Tipo de notificación -->
+                <div class="col-md-6" formGroupName="data">
+                    <label for="notificationType" class="form-label">Tipo de notificación</label>
+                    <select id="notificationType" formControlName="notificationType" class="form-select"
+                        [ngClass]="{'is-invalid': form.get('data.notificationType')?.invalid && form.get('data.notificationType')?.touched}">
+                        <option value="">Selecciona un tipo</option>
+                        <option value="birthday">Cumpleaños</option>
+                        <option value="payment_success">Pago exitoso</option>
+                        <option value="payment_failed">Pago fallido</option>
+                        <option value="offer">Oferta</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Debe seleccionar un tipo de notificación.
+                    </div>
+                </div>
+
+                <!-- Extra Info -->
+                <div class="col-md-6" formGroupName="data">
+                    <label for="extra_info" class="form-label">Extra Info (URL o texto)</label>
+                    <input type="text" id="extra_info" class="form-control" formControlName="extra_info"
+                        placeholder="https://ejemplo.com" />
+                </div>
+
+            </div>
+
+            <!-- Selector de usuarios -->
+            <div class="mt-4">
+                <h5 class="mb-3">Agregar destinatarios</h5>
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-6">
+                        <select class="form-select" [formControl]="userSelect">
+                            <option value="" selected>Seleccionar usuario</option>
+                            <ng-container *ngIf="users$ | async as users">
+                                <option *ngFor="let user of users" [value]="user.id">
+                                    {{ user.username }} - {{ user.email }}
+                                </option>
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-outline-primary w-100" (click)="addSelectedUser()"
+                            [disabled]="!userSelect.value">
+                            + Agregar
+                        </button>
+                    </div>
+                    <!-- <div class="col-md-3">
+                        <button type="button" class="btn btn-outline-secondary w-100" (click)="addDestinatary()">
+                            + Nuevo destinatario
+                        </button>
+                    </div> -->
+                </div>
+            </div>
+
+            <div formArrayName="destinatary" class="mt-4">
+                <h5 class="mb-3">Lista de destinatarios</h5>
+
+                <div *ngFor="let d of destinatary.controls; let i = index" [formGroupName]="i"
+                    class="row g-3 align-items-end mb-2">
+
+                    <!-- <div class="col-md-6">
+                        <label class="form-label">Username</label>
+                        <input type="text" class="form-control" formControlName="username" readonly />
+                    </div> -->
+
+                    <div class="col-md-5">
+                        <label class="form-label">Device ID</label>
+                        <input type="text" class="form-control" formControlName="idDevice" placeholder="Device ID" />
+                    </div>
+
+                    <div class="col-md-1 text-end">
+                        <button type="button" class="btn btn-outline-danger w-100" (click)="removeDestinatary(i)">
+                            Eliminar
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <!-- Botones -->
+            <div class="mt-4 d-flex justify-content-end gap-2">
+                <button type="button" class="btn btn-secondary" (click)="cancel()">
+                    Cancelar
+                </button>
+                <button type="submit" class="btn btn-primary" [disabled]="form.invalid || loading">
+                    {{ loading ? 'Guardando...' : 'Guardar' }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

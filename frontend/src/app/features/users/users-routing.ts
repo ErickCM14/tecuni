@@ -1,0 +1,9 @@
+﻿import { Routes } from "@angular/router";
+
+export const USERS_ROUTES: Routes = [
+  {
+    path: "",
+    loadComponent: () =>
+      import("./ui/containers/users-page/users-page").then(m => m.UsersPage)
+  }
+];

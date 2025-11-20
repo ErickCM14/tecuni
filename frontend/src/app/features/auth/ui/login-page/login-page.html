@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 shadow" style="width: 100%; max-width: 400px;">
+        <h3 class="text-center mb-3">Iniciar sesión</h3>
+
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="mb-3">
+                <label>Email</label>
+                <input formControlName="email" class="form-control" placeholder="email" />
+                @if(form.get('email')?.touched && form.get('email')?.invalid){
+                <small class="text-danger">
+                    Ingresa un email válido
+                </small>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label>Contraseña</label>
+                <input type="password" formControlName="password" class="form-control" placeholder="********" />
+                @if(form.get('password')?.touched && form.get('password')?.invalid){
+                <small class="text-danger">
+                    La contraseña es requerida
+                </small>
+                }
+            </div>
+
+            @if(errorMessage()){
+            <div class="alert alert-danger">{{ errorMessage() }}</div>
+            }
+
+            <button class="btn btn-primary w-100" [disabled]="loading()">
+                @if(!loading()){
+                <span>Ingresar</span>
+                }@else{
+                <span class="spinner-border spinner-border-sm"></span>
+                }
+            </button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="page users-page">
+    <div class="page-header">
+        <h1 class="page-title">Usuarios</h1>
+        <a [routerLink]="['create']" class="btn btn-sm btn-primary">Agregar</a>
+    </div>
+
+    <section class="page-content">
+        <app-data-table [data]="(data$ | async) || []" [displayedColumns]="displayedColumns" [headers]="headers"
+            [total]="total" [page]="page" [pageSize]="pageSize" [loadFn]="load">
+            <ng-template #rowActions let-row>
+                <!-- <a [routerLink]="['/users', row.id]" type="button" class="text-primary p-1" title="Ver"><i
+                        class="icon material-icons md-visibility"></i>
+                    </a> -->
+                <a [routerLink]="['/users/edit', row.id]" type="button" class="text-warning p-1" title="Editar"><i
+                        class="icon material-icons md-edit"></i>
+                </a>
+                <a (click)="deleteUser(row.id)" type="button" class="text-danger" title="Eliminar">
+                    <i class="icon material-icons md-delete"></i>
+                </a>
+            </ng-template>
+        </app-data-table>
+    </section>
+</div>

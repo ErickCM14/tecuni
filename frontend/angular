@@ -1,0 +1,18 @@
+              "public/vendor/css/all.min.css",
+              "public/vendor/css/OverlayScrollbars.min.css",
+              "public/vendor/css/jquery.dataTables.min.css",
+              "public/vendor/css/daterangepicker.css",
+              "public/vendor/css/bootstrap.min.css",
+              "public/css/style.css",
+              "public/css/blue-color.css"
+
+
+              "public/vendor/js/jquery-3.6.0.min.js",
+              "public/vendor/js/jquery.overlayScrollbars.min.js",
+              "public/vendor/js/apexcharts.js",
+              "public/vendor/js/jquery.dataTables.min.js",
+              "public/vendor/js/moment.min.js",
+              "public/vendor/js/daterangepicker.js",
+              "public/vendor/js/bootstrap.bundle.min.js",
+              "public/js/dashboard.js",
+              "public/js/main.js"

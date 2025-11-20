@@ -1,0 +1,165 @@
+<div class="container mt-4">
+    <div class="card-header">
+        <h3 class="mb-0">Agregar / Editar</h3>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="row">
+                <!-- CODE -->
+                <div class="col-md-6 mb-3">
+                    <label>Código</label>
+                    <input class="form-control" formControlName="code"
+                        [ngClass]="{ 'is-invalid': form.get('code')?.invalid && form.get('code')?.touched }" />
+                    <div class="invalid-feedback" *ngIf="form.get('code')?.errors?.['required']">
+                        El código es obligatorio.
+                    </div>
+                    <div class="invalid-feedback" *ngIf="form.get('code')?.errors?.['minlength']">
+                        El código debe tener al menos 3 caracteres.
+                    </div>
+                    <div class="invalid-feedback" *ngIf="form.get('code')?.errors?.['maxlength']">
+                        El código no puede exceder 50 caracteres.
+                    </div>
+                    <div class="invalid-feedback" *ngIf="form.get('code')?.errors?.['pattern']">
+                        Solo se permiten caracteres alfanuméricos.
+                    </div>
+                </div>
+
+                <!-- COLOR -->
+                <div class="col-md-6 mb-3">
+                    <label>Color</label>
+                    <input type="color" class="form-control" formControlName="color"
+                        [ngClass]="{ 'is-invalid': form.get('color')?.invalid && form.get('color')?.touched }" />
+                    <div class="invalid-feedback" *ngIf="form.get('color')?.errors?.['pattern']">
+                        El color debe tener un formato hexadecimal válido.
+                    </div>
+                </div>
+
+                <!-- Ocultos -->
+                <div class="col-md-6 mb-3 d-none">
+                    <input type="hidden" class="form-control" formControlName="icon" />
+                </div>
+
+                <div class="col-md-6 mb-3 d-none">
+                    <input type="hidden" class="form-control" formControlName="categoryId" />
+                </div>
+
+                <!-- TRANSLATIONS -->
+                <div formGroupName="translations">
+                    <div formGroupName="es">
+                        <div class="col-12 mb-3">
+                            <label>Nombre (es)</label>
+                            <input class="form-control" formControlName="name"
+                                [ngClass]="{ 'is-invalid': form.get('translations.es.name')?.invalid && form.get('translations.es.name')?.touched }" />
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('translations.es.name')?.errors?.['required']">
+                                El nombre es obligatorio.
+                            </div>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('translations.es.name')?.errors?.['minlength']">
+                                El nombre debe tener al menos 3 caracteres.
+                            </div>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('translations.es.name')?.errors?.['maxlength']">
+                                El nombre no puede exceder 100 caracteres.
+                            </div>
+                        </div>
+
+                        <div class="col-12 mb-3">
+                            <label>Descripción (es)</label>
+                            <textarea class="form-control" formControlName="description"
+                                [ngClass]="{ 'is-invalid': form.get('translations.es.description')?.invalid && form.get('translations.es.description')?.touched }"></textarea>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('translations.es.description')?.errors?.['required']">
+                                La descripción es obligatoria.
+                            </div>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('translations.es.description')?.errors?.['minlength']">
+                                La descripción debe tener al menos 3 caracteres.
+                            </div>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('translations.es.description')?.errors?.['maxlength']">
+                                La descripción no puede exceder 200 caracteres.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+            <h5>Preguntas</h5>
+
+            <div formArrayName="questions"
+                [ngClass]="{ 'is-invalid': form.get('questions')?.errors?.['minlength'] && form.get('questions')?.touched }">
+                <div *ngFor="let q of questions.controls; let i = index" [formGroupName]="i"
+                    class="border p-3 mb-3 rounded position-relative">
+                    <!-- Botón eliminar pregunta -->
+                    <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2"
+                        (click)="removeQuestion(i)">
+                        X
+                    </button>
+
+                    <div formGroupName="translations">
+                        <div formGroupName="es">
+                            <label>Pregunta {{ i + 1 }} (es)</label>
+                            <input class="form-control mb-2" formControlName="label"
+                                [ngClass]="{ 'is-invalid': q.get('translations.es.label')?.invalid && q.get('translations.es.label')?.touched }" />
+                            <div class="invalid-feedback" *ngIf="q.get('translations.es.label')?.errors?.['required']">
+                                La pregunta es obligatoria.
+                            </div>
+                            <div class="invalid-feedback" *ngIf="q.get('translations.es.label')?.errors?.['minlength']">
+                                La pregunta debe tener al menos 3 caracteres.
+                            </div>
+                            <div class="invalid-feedback" *ngIf="q.get('translations.es.label')?.errors?.['maxlength']">
+                                La pregunta no puede exceder 150 caracteres.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RESPUESTAS -->
+                    <div formArrayName="responses" class="ms-3 mt-2">
+                        <div *ngFor="let r of getResponses(i).controls; let j = index" [formGroupName]="j"
+                            class="mb-2 border-start ps-3">
+                            <div formGroupName="translations">
+                                <div formGroupName="es">
+                                    <input class="form-control mb-1" placeholder="Opción {{ j + 1 }}"
+                                        formControlName="label"
+                                        [ngClass]="{ 'is-invalid': r.get('translations.es.label')?.invalid && r.get('translations.es.label')?.touched }" />
+                                    <div class="invalid-feedback"
+                                        *ngIf="r.get('translations.es.label')?.errors?.['required']">
+                                        La respuesta es obligatoria.
+                                    </div>
+                                    <div class="invalid-feedback"
+                                        *ngIf="r.get('translations.es.label')?.errors?.['minlength']">
+                                        La respuesta debe tener al menos 1 caracter.
+                                    </div>
+                                    <div class="invalid-feedback"
+                                        *ngIf="r.get('translations.es.label')?.errors?.['maxlength']">
+                                        La respuesta no puede exceder 100 caracteres.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Botón eliminar respuesta -->
+                            <button type="button" class="btn btn-sm btn-outline-danger mt-1"
+                                (click)="removeResponse(i, j)">
+                                Eliminar
+                            </button>
+                        </div>
+
+                        <button type="button" class="btn btn-sm btn-outline-primary" (click)="addResponse(i)">
+                            + Respuesta
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4 d-flex justify-content-end gap-2">
+                <button type="button" class="btn btn-warning mt-3" (click)="addQuestion()">+ Pregunta</button>
+                <button type="button" class="btn btn-secondary mt-3 ms-2" [routerLink]="['/faqs']">Cancelar</button>
+                <button type="submit" class="btn btn-primary mt-3 ms-2" [disabled]="form.invalid || loading">
+                    {{ loading ? 'Guardando...' : 'Guardar' }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

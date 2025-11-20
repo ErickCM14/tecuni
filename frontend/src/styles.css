@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+.page-header {
+    /* margin-bottom: 1rem; */
+    padding: 1rem;
+}
+
+.page-title {
+    font-size: 1.5rem;
+    color: var(--text-primary, #222);
+}
+
+.page-content {
+    display: block;
+    padding: 1rem
+}
+
+.loading {
+    padding: 1rem;
+}
+
+.empty {
+    padding: 1rem;
+    color: rgba(0, 0, 0, 0.6);
+}
