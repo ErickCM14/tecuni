@@ -43,6 +43,7 @@ const questionnaireSchema = new Schema({
       description: String
     }, { _id: false })
   },
+  categoryId: String,
   category: {
     icon: String,
     color: String,

@@ -46,7 +46,7 @@ export class FaqsPage {
         const rows: FaqsRow[] = items.map((u: any) => ({
           ...u,
           name: u.translations.es.name,
-          category: u.category.translations.es.name,
+          // category: u.category.translations.es.name,
           questions: u.questions.length,
         }));
 

@@ -54,7 +54,7 @@ export class FaqsForm implements OnInit {
         ]
       ],
       icon: ['https://backend-23.nubeseo.es/wp-content/uploads/2024/12/faqs-que-es.jpg'],
-      categoryId: ['6906fe75bf8ccd8e11321177', Validators.required],
+      // categoryId: ['6906fe75bf8ccd8e11321177', Validators.required],
       translations: this.fb.group({
         es: this.fb.group({
           name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
@@ -114,7 +114,7 @@ export class FaqsForm implements OnInit {
           code: data.code,
           color: data.color,
           icon: data.icon,
-          categoryId: '6906fe75bf8ccd8e11321177',
+          // categoryId: '6906fe75bf8ccd8e11321177',
           translations: {
             es: {
               name: data.translations?.es?.name || '',

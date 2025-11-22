@@ -15,8 +15,11 @@ class CreateQuestionnaireUseCase {
             questions
         } = payload;
 
-        const category = await this.categoryRepo.findById(categoryId);
-        if (!category) throw new Error('Categoría no encontrada');
+        let category;
+        if (categoryId) {
+            category = await this.categoryRepo.findById(categoryId);
+            if (!category) throw new Error('Categoría no encontrada');
+        }
 
         const enrichedQuestions = [];
 
@@ -43,14 +46,17 @@ class CreateQuestionnaireUseCase {
             icon,
             color,
             translations,
-            category: {
+            questions: enrichedQuestions
+        };
+
+        if (categoryId && category) {
+            data.categoryId = categoryId;
+            data.category = {
                 icon: category.icon,
                 color: category.color,
                 translations: category.translations
-            },
-            questions: enrichedQuestions
-        };
-console.log(data);
+            };
+        }
         return data
     }
 }

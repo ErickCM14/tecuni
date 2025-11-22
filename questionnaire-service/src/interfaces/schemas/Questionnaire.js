@@ -13,7 +13,7 @@ class QuestionnaireSchema {
           description: Joi.string().min(3).max(200).required().label('description'),
         }).required()
       ).min(1).required().label('translations'),
-      categoryId: Joi.string().required().label('categoryId'),
+      categoryId: Joi.string().optional().label('categoryId'),
       questions: Joi.array().items(
         Joi.object({
           translations: Joi.object().pattern(
@@ -56,7 +56,7 @@ class QuestionnaireSchema {
           description: Joi.string().min(3).max(200).required().label('description'),
         }).required()
       ).min(1).required().label('translations'),
-      categoryId: Joi.string().required().label('categoryId'),
+      categoryId: Joi.string().optional().label('categoryId'),
       questions: Joi.array().items(
         Joi.object({
           translations: Joi.object().pattern(
