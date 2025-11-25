@@ -3,7 +3,7 @@ import { getRepositories } from '../../config/RepositoryProvider.js';
 import { Whatsapp } from '../../services/meta/Whatsapp.js';
 import { OpenAiApi } from '../../services/ai-service/openAiApiService.js';
 import { SaveProject } from '../../application/SaveProject.js';
-import { VERIFY_TOKEN, OPTIONS_ENUM } from '../../config/constants.js';
+import { VERIFY_TOKEN, OPTIONS_ENUM, PHONE_NUMBER, NAME_BOT } from '../../config/constants.js';
 import { PROMPT_DESARROLLO_SOFTWARE, PROMPT_CIBERSEGURIDAD, PROMPT_FABRICA_SOFTWARE, PROMPT_INTELIGENCIA_ARTIFICIAL, PROMPT_CONSULTORIA_TI } from '../../services/ai-service/prompts/prompt_gpt.js';
 import ExcelJS from 'exceljs';
 import { Estimation } from '../../domain/entities/Estimation.js';
@@ -18,6 +18,8 @@ export class ChatbotController extends Controller {
         this.conversations = {};
         this.verifyToken = VERIFY_TOKEN;
         this.optionsEnum = OPTIONS_ENUM;
+        this.phoneNumber = PHONE_NUMBER;
+        this.nameBot = NAME_BOT;
         this.prompts = {
             [this.optionsEnum['1']]: PROMPT_DESARROLLO_SOFTWARE,
             [this.optionsEnum['2']]: PROMPT_FABRICA_SOFTWARE,
@@ -31,12 +33,41 @@ export class ChatbotController extends Controller {
         try {
             const { conversationRepo } = await getRepositories();
             this.conversationRepository = conversationRepo;
-            this.saveProject = new SaveProject(this.conversationRepository, this.whatsapp, this.conversations, this.openAiApi, this.optionsEnum, this.prompts);
+            this.saveProject = new SaveProject(this.conversationRepository, this.whatsapp, this.conversations, this.openAiApi, this.optionsEnum, this.prompts, this.phoneNumber, this.nameBot);
+
+            // console.log(req.body.entry?.[0].changes?.[0].value.contacts?.[0].profile.name);
+            // console.log(req.body.entry?.[0].changes?.[0].value.contacts?.[0].wa_id);
+            // console.log(JSON.stringify(req.body));
 
             const entry = req.body.entry?.[0];
             const changes = entry?.changes?.[0];
             const value = changes?.value;
             const message = value?.messages?.[0];
+            const profile = value?.contacts?.[0].profile;
+            const statuses = value?.statuses;
+
+            if (statuses) {
+                // console.log("Estatuses");
+                // console.log(statuses);
+                // console.log(statuses[0].id);
+                // console.log(statuses[0].status);
+                // console.log(statuses[0].timestamp);
+                // console.log(statuses[0].recipient_id);
+            }
+            if (message) {
+                // console.log("Message");
+                // console.log(message);
+                // console.log(message[0].id);
+                // console.log(message[0].from);
+                // console.log(message[0].timestamp);
+            }
+
+            if (profile) {
+                // console.log(profile);
+                // console.log(profile.name);
+                // console.log(profile.wa_id);
+
+            }
 
             if (message) {
                 if (message.timestamp) {
@@ -48,7 +79,7 @@ export class ChatbotController extends Controller {
                     }
                 }
                 res.status(200).send('Successfully');
-                await this.saveProject.execute(message);
+                await this.saveProject.execute(profile, message);
                 return;
             }
             res.status(200).send('Successfully');

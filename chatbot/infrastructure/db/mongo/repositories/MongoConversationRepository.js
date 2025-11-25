@@ -8,12 +8,28 @@ export class MongoConversationRepository extends ConversationRepository {
         this.base = new BaseRepository(model);
     }
 
-    async save(projectData) {
-        const existing = await this.base.findOne({ phone: projectData.phone });
+    async save(data) {
+        const existing = await this.base.findOne({ phone: data.phone });
+        // if (existing) {
+        //     return this.base.update(existing._id, data);
+        // }
+
         if (existing) {
-            return this.base.update(existing._id, projectData);
+            return this.model.updateOne(
+                { phone: data.phone },
+                {
+                    $set: {
+                        name: data.name ?? existing.name
+                    }
+                }
+            );
         }
-        return this.base.create(projectData);
+        // return this.base.create(data);
+        return this.base.create({
+            phone: data.phone,
+            name: data.name || "",
+            messages: []
+        });
     }
 
     async getConversationByPhone(phone) {
@@ -25,30 +41,26 @@ export class MongoConversationRepository extends ConversationRepository {
         // Convertir el formato de mensajes para que sea compatible con OpenAI
         return conversation.messages.map(msg => ({
             role: msg.role,
-            content: msg.message
+            content: msg.text
         }));
     }
 
-    async saveMessage(phone, role, message) {
-        const now = new Date();
-
+    async saveMessage(phone, name, role, text, waId, status = 'sent', messageType = 'text', metaTimestamp = null) {
+        const newMessage = { role, text, waId, status, messageType, metaTimestamp };
         const existing = await this.base.findOne({ phone });
-        const newMessage = { role, message, timestamp: now };
 
         if (existing) {
             await this.model.updateOne(
                 { phone },
                 {
-                    $push: { messages: newMessage },
-                    $set: { updatedAt: now }
+                    $push: { messages: newMessage }
                 }
             );
         } else {
             await this.base.create({
                 phone,
-                messages: [newMessage],
-                createdAt: now,
-                updatedAt: now
+                name,
+                messages: [newMessage]
             });
         }
     }
