@@ -1,3 +1,5 @@
+import { HOST } from '../config/constants.js';
+
 export class SaveProject {
     constructor(ConversationRepo, Whatsapp, Conversations, OpenAiApi, OptionsEnum, Prompts, PhoneNumber, NameBot) {
         this.conversationRepo = ConversationRepo;
@@ -8,6 +10,7 @@ export class SaveProject {
         this.roleUser = "user";
         this.phoneNumberBot = PhoneNumber;
         this.nameBot = NameBot;
+        this.host = HOST;
 
         this.startInactiveUserWatcher();
     }
@@ -70,7 +73,7 @@ export class SaveProject {
      * ENVÍA un mensaje por WhatsApp y lo GUARDA en MongoDB
      */
     // Dentro de SaveProject class — reemplaza sendAndSave actual
-    async sendAndSave(to, text, options = null, extra = {}) {
+    async sendAndSave(to, text, options = null, extra = {}, media = null) {
         console.log("sendAndSave:", to, text, options);
 
         let waIdBot = null;
@@ -117,6 +120,82 @@ export class SaveProject {
                     // Si options tiene otro formato (defensivo)
                     console.warn("Formato de options inesperado, enviando como texto.");
                     waIdBot = await this.whatsapp.sendMessage(to, text);
+                }
+            }
+
+            if (media) {
+                if (Array.isArray(media) && media.length) {
+                    for (const m of media) {
+
+                        const { type, file, mimeType, caption, filename } = m;
+
+                        let mediaResult = null;
+
+                        // Si viene filePath local
+                        if (file) {
+                            const absPath = path.join(process.cwd(), "public", "media", file);
+
+                            mediaResult = await this.whatsapp.sendMedia(to, {
+
+                                type: type,
+                                url: null,
+                                filePath: absPath,
+                                mimeType: mimeType,
+                                caption: caption,
+                                filename: filename
+                            });
+                        }
+
+                        // Si viene URL pública
+                        else if (m.url) {
+                            mediaResult = await this.whatsapp.sendMedia(to, {
+                                type: type,
+                                url: media.url,
+                                filePath: null,
+                                mimeType: mimeType,
+                                caption: caption,
+                                filename: filename
+                            });
+                        }
+
+                        console.log("MEDIA ENVIADO:", mediaResult);
+                    }
+                } else {
+
+                    const { type, file, mimeType, caption, filename } = media;
+
+                    let mediaResult = null;
+
+                    // Si viene filePath local
+                    if (file) {
+                        const absPath = path.join(process.cwd(), "public", "media", file);
+
+                        mediaResult = await this.whatsapp.sendMedia(to, {
+                            type: type,
+                            url: null,
+                            filePath: absPath,
+                            mimeType: mimeType,
+                            caption: caption,
+                            filename: filename
+                        });
+                    }
+
+                    // Si viene URL pública
+                    else if (media.url) {
+                        mediaResult = await this.whatsapp.sendMedia(to, {
+                            type: type,
+                            url: media.url,
+                            filePath: null,
+                            mimeType: mimeType,
+                            caption: caption,
+                            filename: filename
+                        });
+
+                        // await this.whatsapp.sendMedia(from, { type: 'image', url: this.host + '/media/imagen-prueba.png', filePath: null, mimeType: 'png', caption: "Imagen png tec", filename: "Imagen tec png" })
+                        // await this.whatsapp.sendMedia(to, { type: 'document', url: this.host + '/media/documento-prueba.pdf', filePath: null, mimeType: 'pdf', caption: "Imagen pdf tec", filename: "Imagen tec pdf" })
+                    }
+
+                    console.log("MEDIA ENVIADO:", mediaResult);
                 }
             }
 
@@ -377,13 +456,13 @@ export class SaveProject {
                 await this.sendAndSave(
                     from,
                     "Perfecto 😄 Entonces puedes elegir entre tres programas presenciales, según tu ritmo y disponibilidad:\n\n" +
-                    "a) 📘 *Bachillerato en 18 meses* - Lunes a jueves\nCon clases de *hasta 3 horas diarias*, ideal si quieres terminar más rápido 🏃‍♀️\n" +
-                    "b) 📗 *Bachillerato sabatino* - 18 meses\nQue es perfecto si trabajas entre semana o tienes poco tiempo, con solo *6 horas fijas los sábados* ⏰\n" +
-                    "c) 📙 *Bachillerato en 24 meses* - Lunes a jueves\nDiseñado para chavos de *15 a 17 años*, con clases de *4 horas diarias* 🎓\n",
+                    "A) 📘 *Bachillerato en 18 meses* - Lunes a jueves\nCon clases de *hasta 3 horas diarias*, ideal si quieres terminar más rápido 🏃‍♀️\n" +
+                    "B) 📗 *Bachillerato sabatino* - 18 meses\nQue es perfecto si trabajas entre semana o tienes poco tiempo, con solo *6 horas fijas los sábados* ⏰\n" +
+                    "C) 📙 *Bachillerato en 24 meses* - Lunes a jueves\nDiseñado para chavos de *15 a 17 años*, con clases de *4 horas diarias* 🎓\n",
                     [
-                        { id: "program_option_a", title: "📘 Programa a" },
-                        { id: "program_option_b", title: "📗 Programa b" },
-                        { id: "program_option_c", title: "📙 Programa c" },
+                        { id: "program_option_a", title: "📘 Programa A" },
+                        { id: "program_option_b", title: "📗 Programa B" },
+                        { id: "program_option_c", title: "📙 Programa C" },
                     ]
                 );
 
@@ -409,7 +488,20 @@ export class SaveProject {
 
                 await this.sendAndSave(
                     from,
-                    "Te dejo una infografía para que la revises con calma y elijas la opción que mejor se adapte a ti 👇" +
+                    "Te dejo una infografía para que la revises con calma y elijas la opción que mejor se adapte a ti 👇",
+                    null,
+                    {},
+                    {
+                        type: "document",
+                        url: this.host + "/media/documento-prueba.pdf",
+                        filePath: null,  // SIEMPRE null cuando usas url pública
+                        mimeType: "document/pdf",
+                        filename: "Infografia-tec-universitario.pdf",
+                        caption: "Infografía Tec Universitario"
+                    }
+                );
+                await this.sendAndSave(
+                    from,
                     "¿Va?",
                     [
                         { id: "va", title: "Va" },
@@ -427,7 +519,7 @@ export class SaveProject {
 
                 await this.sendAndSave(
                     from,
-                    "Antes de continuar, quiero comentarte que tus datos serán tratados conforme a nuestro *Aviso de Privacidad*, que puedes consultar aquí 👉 [link]\n\n" +
+                    `Antes de continuar, quiero comentarte que tus datos serán tratados conforme a nuestro *Aviso de Privacidad*, que puedes consultar aquí 👉 https://tecuniversitario.net/wp-content/uploads/2021/07/AVISO-DE-PRIVACIDAD.pdf \n\n` +
                     "¿Me compartes tu *nombre* por favor? 😊"
                 );
                 return true;
@@ -460,7 +552,7 @@ export class SaveProject {
                 await this.sendAndSave(
                     from,
                     "Te cuento que las clases son *presenciales* y se imparten en nuestro *campus Central de la colonia Juárez*, súper céntrico y de muy fácil acceso 🚇\n\n" +
-                    "Aquí te dejo un videito para que conozcas las instalaciones ▶️(link)\n\n" +
+                    "Aquí te dejo un videito para que conozcas las instalaciones ▶️ https://youtu.be/R2OoD4Jc8W8\n\n" +
                     "Por fa, dime qué plan de estudios te interesa más:\n\n" +
                     "1. Lunes a jueves - 3 hrs diarias (18 meses) con dos horarios.\n" +
                     "2. Sábados - 6 hrs (18 meses) con un solo horario.\n" +
@@ -500,10 +592,19 @@ export class SaveProject {
                     "Ahora te comparto nuestros costos, que están increíbles 👇\n\n" +
                     "💰 *Inscripción*:  La inscripción es totalmente gratis.\n💸 *Mensualidad*: $2,045 MX congelada, por los 18 meses.\n 🎉 Además, este mes tenemos *50% de descuento en las dos primeras mensualidades* y una *mochila de bienvenida*, si te inscribes antes del *20 de diciembre* 🎒\n\n" +
                     "¿Cool, no? 😎\n\n" +
-                    "Te dejo un documento con los detalles de los costos para que los revises con calma. (link)",
+                    "Te dejo un documento con los detalles de los costos para que los revises con calma.",
                     [
                         { id: "vale", title: "Vale" },
-                    ]
+                    ],
+                    {},
+                    {
+                        type: "document",
+                        url: this.host + "/media/documento-prueba.pdf",
+                        filePath: null,  // SIEMPRE null cuando usas url pública
+                        mimeType: "document/pdf",
+                        filename: "Costos-tec-universitario.pdf",
+                        caption: "Costos inscripción Tec Universitario"
+                    }
                 );
 
                 return true;
@@ -641,12 +742,21 @@ Nos vemos pronto, ${user.data.name}.
                     "🕒 *Horarios:* Libres y a tu ritmo\n\n" +
                     "Te dejo una infografía para que veas todos los detalles 👇",
                     [{ id: "ver_info", title: "Ver infografía" }],
+                    {},
+                    {
+                        type: "image",
+                        url: this.host + "/media/tecuni.png",
+                        filePath: null,  // SIEMPRE null cuando usas url pública
+                        mimeType: "image/png",
+                        filename: "Infografia-tec-universitario.png",
+                        caption: "Infografía Tec Universitario"
+                    }
                 );
 
                 return true;
 
             case 220:
-                if (!["ver infografía", "ver infografia", "ver_info"].includes(text.toLowerCase())) {
+                if (!["ver infografía", "ver infografia", "ver_info", "ver", "gracias", "ok"].includes(text.toLowerCase())) {
                     await this.sendAndSave(from, "Toca el botón para ver la información 😊");
                     return true;
                 }
@@ -683,7 +793,7 @@ Nos vemos pronto, ${user.data.name}.
                     from,
                     `¡Gracias, ${user.data.name}! 🙌\n\n` +
                     "Y para que estés tranquila(o), tus datos están protegidos.\n" +
-                    "Aquí puedes consultar nuestro Aviso de Privacidad 👉 [link al aviso]."
+                    `Aquí puedes consultar nuestro Aviso de Privacidad 👉 https://tecuniversitario.net/wp-content/uploads/2021/07/AVISO-DE-PRIVACIDAD.pdf`
                 );
 
                 await this.sendAndSave(
@@ -708,7 +818,17 @@ Nos vemos pronto, ${user.data.name}.
                 // Aquí envías el archivo como lo haces normalmente
                 await this.sendAndSave(
                     from,
-                    "Te dejo el detalle de precios para que lo revises con calma 📄"
+                    "Te dejo el detalle de precios para que lo revises con calma 📄",
+                    null,
+                    {},
+                    {
+                        type: "document",
+                        url: this.host + "/media/documento-prueba.pdf",
+                        filePath: null,  // SIEMPRE null cuando usas url pública
+                        mimeType: "document/pdf",
+                        filename: "precios.pdf",
+                        caption: "Precios Tec Universitario"
+                    }
                 );
                 await this.sendAndSave(
                     from,

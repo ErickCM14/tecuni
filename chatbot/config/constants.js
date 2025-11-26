@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
+export const HOST = process.env.HOST;
 export const MONGO_URI = process.env.MONGO_URI;
 export const BASE_URL_OPENROUTER = process.env.BASE_URL_OPENROUTER;
 export const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
