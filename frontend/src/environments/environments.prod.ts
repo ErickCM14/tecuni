@@ -12,6 +12,7 @@ export const environment = {
     users: 'users',
     faqs: 'questionnaire',
     notifications: 'push-notification',
+    conversations: 'conversations',
   },
   faqsUrl: 'http://localhost:3001/faqs'
 };

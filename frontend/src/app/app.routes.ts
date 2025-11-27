@@ -70,6 +70,23 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/notifications/ui/containers/notifications-form/notifications-form').then(m => m.NotificationsForm)
       },
+
+      // feature conversations (standalone)
+      {
+        path: 'conversations',
+        loadComponent: () =>
+          import('./features/conversations/ui/containers/conversations-list/conversations-list').then(m => m.ConversationsList)
+      },
+      // {
+      //   path: 'notifications/create',
+      //   loadComponent: () =>
+      //     import('./features/notifications/ui/containers/notifications-form/notifications-form').then(m => m.NotificationsForm)
+      // },
+      // {
+      //   path: 'notifications/edit/:id',
+      //   loadComponent: () =>
+      //     import('./features/notifications/ui/containers/notifications-form/notifications-form').then(m => m.NotificationsForm)
+      // },
     ]
   },
   { path: '**', redirectTo: 'login' }

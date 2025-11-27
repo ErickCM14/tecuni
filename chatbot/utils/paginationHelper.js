@@ -5,6 +5,7 @@ export class PaginationHelper {
         const skip = (page - 1) * limit;
         const sort = query.sort || '';
         const order = query.order || '';
+        const fields = query.fields ? query.fields.replace(/,/g, ' ') : '';
 
         let filters = {};
         if (query.filters) {
@@ -14,7 +15,7 @@ export class PaginationHelper {
                 filters = Object.entries(parsedFilters).reduce((acc, [key, value]) => {
                     if (typeof value === 'object' && value !== null) {
                         acc[key] = value;
-                    } else if(typeof value === 'string') {
+                    } else if (typeof value === 'string') {
                         acc[key] = { $regex: value, $options: 'i' };
                     } else {
                         acc[key] = value;
@@ -30,13 +31,18 @@ export class PaginationHelper {
             filters,
             pagination: { limit, page, skip },
             order,
-            sort
+            sort,
+            fields
         };
     }
 
-    static async paginate(model, filters, pagination, sort = '', order = '', populate = '') {
+    static async paginate(model, filters, pagination, sort = '', order = '', populate = '', fields = '') {
         const { skip, limit } = pagination;
         let query = model.find(filters).skip(skip).limit(limit);
+
+        if (fields) {
+            query = query.select(fields);
+        }
 
         if (sort) {
             const direction = order === 'desc' ? -1 : 1;

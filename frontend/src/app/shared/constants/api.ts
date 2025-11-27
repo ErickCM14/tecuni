@@ -8,5 +8,7 @@ export const Api = {
     faqs: (version: 'v1' | 'v2' = 'v1') =>
         `${environment.apiBase}${environment.versions[version]}/${environment.endpoints.faqs}`,
     notifications: (version: 'v1' | 'v2' = 'v1') =>
-        `${environment.apiBase}${environment.versions[version]}/${environment.endpoints.notifications}`
+        `${environment.apiBase}${environment.versions[version]}/${environment.endpoints.notifications}`,
+    conversations: (version: 'v1' | 'v2' = 'v1') =>
+        `${environment.apiBase}${environment.versions[version]}/${environment.endpoints.conversations}`
 };

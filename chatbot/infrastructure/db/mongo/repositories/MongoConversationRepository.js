@@ -112,5 +112,27 @@ export class MongoConversationRepository extends ConversationRepository {
         return message.message
     }
 
+    async getAllWithPagination(query) {
+        return this.base.getAllWithPagination(query);
+    }
+
+    async getMessagesPaginated(id, page = 1, limit = 30) {
+        const skip = (page - 1) * limit;
+
+        const result = await this.model.aggregate([
+            { $match: { _id: new ObjectId(id) } },
+
+            {
+                $project: {
+                    phone: 1,
+                    name: 1,
+                    total: { $size: "$messages" },
+                    messages: { $slice: ["$messages", skip, limit] }
+                }
+            }
+        ]);
+
+        return result[0];
+    }
 
 }

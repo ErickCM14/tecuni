@@ -1,0 +1,809 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #0B4C7A;
+  --color-dark: #042A51;
+  --color-accent: #F85018;
+  --orange-accent: #e86034;
+  --dark-text: #232323;
+}
+
+.landing-page-universidad * {
+  box-sizing: border-box;
+}
+.landing-page-universidad {
+  box-sizing: border-box;
+  background: #ffffff;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilos del Logo como Overlay */
+.logo-2-1 {
+    /* 1. Posicionamiento: Quitar del flujo normal y posicionar */
+    position: absolute;
+    top: 20px; /* Ajusta la distancia desde la parte superior */
+    left: 20px; /* Ajusta la distancia desde la izquierda */
+    z-index: 10; /* Asegura que esté por encima del carrusel */
+    
+    /* 2. Tamaño y Apariencia */
+    max-width: 200px; /* Ajusta el tamaño según tu diseño */
+    height: auto;
+    
+    /* 3. Evita clics no deseados si es un logo interactivo */
+    cursor: pointer;
+}
+
+/* Responsive (Ajustar el logo para que no sea demasiado grande en móvil) */
+@media (max-width: 768px) {
+    .logo-2-1 {
+        max-width: 100px;
+        top: 10px;
+        left: 10px;
+    }
+}
+
+/* ====== PRINCIPAL SECTION STYLES - CORREGIDO ====== */
+.principal-section {
+  width: 100%;
+  position: relative;   /* alto del hero/carrusel */
+}
+
+/* ====== PROPUESTA EDUCATIVA SECTION STYLES ====== */ 
+
+
+.propuesta-educativa-section {
+  width: 100%;
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  /* Centra los elementos hijos (títulos, switch) horizontalmente */
+  align-items: center; 
+  justify-content: center;
+  /* Centra el texto dentro de los contenedores que ocupan todo el ancho */
+  text-align: center; 
+}
+
+/* Título superior de experiencia */
+.con-m-s-de-20-a-os-de-experiencia-y-m-s-120-000-alumnos-egresados {
+  font-family: "Poppins-Bold", sans-serif;
+  font-size: 2rem; /* Ajuste basado en la jerarquía visual */
+  font-weight: 700;
+  color: var(--dark-text);
+  line-height: 1.4;
+  margin-bottom: 8px; 
+  width: 100%;
+}
+
+/* Subtítulo de planes de estudio */
+.planes-de-estudio-desarrollados-pensando-en-t {
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 1.3rem;
+  color: var(--dark-text);
+  margin-bottom: 40px;
+}
+
+/* Título principal naranja */
+.propuesta-educativa2 {
+  font-family: "Poppins-Bold", sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--orange-accent);
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+.modo-switch {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 320px; /* Tamaño del componente en la imagen */
+  border: 2px solid var(--orange-accent); /* Borde exterior principal */
+  border-radius: 60px; /* Bordes redondeados del contenedor */
+  overflow: hidden; /* Importante para contener los botones */
+  box-sizing: border-box;
+}
+
+.modo-switch button {
+  flex: 1; /* Ambos botones ocupan el 50% del ancho */
+  padding: 12px 0;
+  font-family: "Inter-Bold", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none; /* Quitamos los bordes internos de los botones */
+  transition: all 0.3s ease;
+}
+
+/* Estilo por defecto (Inactivo: Blanco con borde invisible) */
+.modo-switch .presencial {
+  background-color: #fff;
+  color: var(--orange-accent);
+}
+
+/* Estilo del botón ONLINE por defecto (Activo en tu HTML) */
+.modo-switch .online {
+  background-color: var(--orange-accent);
+  color: #fff;
+}
+
+
+/* ====== LICENCIATURA SELECTOR SECTION STYLES ====== */
+.licenciatura-selector-section {
+  background: #fafafa; /* Fondo claro */
+  width: 100%;
+  min-height: 500px;
+  position: relative;
+  display: flex;
+  flex-direction: row; /* Lado a lado en escritorio */
+  align-items: center;
+  justify-content: center;
+  gap: 60px; /* Más espacio entre imagen y texto */
+  padding: 48px 20px;
+  box-sizing: border-box;
+}
+
+/* ====== IMAGEN (IZQUIERDA) ====== */
+/* Nota: En la imagen de referencia hay un fondo naranja abstracto. 
+   He añadido un degradado radial para simular ese efecto detrás de la chica. */
+.imagen-profesionista {
+  width: 100%;
+  max-width: 450px; /* Un poco más grande para igualar la proporción */
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  
+  /* Efecto de brillo naranja detrás (Simulación del diseño) */
+  /* background: radial-gradient(circle, rgba(235,96,52,0.4) 0%, rgba(255,255,255,0) 70%);
+  border-radius: 50%; Mantengo esto si tu imagen es cuadrada/redonda */
+}
+
+/* ====== COLUMNA DERECHA (CONTENIDO) ====== */
+.contenido-carreras {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+  max-width: 480px; /* Ancho máximo para que el texto no se estire demasiado */
+  width: 100%;
+}
+
+/* ====== EL SELECT (INPUT) ====== */
+.selector-carreras {
+  width: 100%;
+  position: relative; /* Necesario para posicionar íconos si usas font-awesome, etc */
+}
+
+.selector-carreras select {
+  width: 100%;
+  padding: 16px 24px; /* Padding generoso */
+  font-size: 1.1rem;
+  font-family: "Inter-Regular", sans-serif;
+  color: #a0a0a0; /* Color gris suave para el placeholder */
+  
+  /* Estilos del borde naranja */
+  border: 2px solid #E86034; 
+  border-radius: 50px; /* Bordes completamente redondos (Pill shape) */
+  background-color: #fff;
+  outline: none;
+  cursor: pointer;
+
+  /* Quitar la flecha por defecto del navegador */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  /* Poner la flecha naranja personalizada (SVG codificado en base64) */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23E86034%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 20px top 50%;
+  background-size: 16px auto;
+}
+
+/* Cambio de color cuando seleccionas una opción (opcional) */
+.selector-carreras select:focus {
+  color: #333;
+}
+
+/* ====== TEXTOS LICENCIATURA ====== */
+.elige-presencial-u-online {
+  font-size: 2.2rem; /* Más grande */
+  font-weight: 800; /* Extra bold */
+  color: #444444; /* Gris oscuro, NO azul */
+  margin-top: 10px;
+  line-height: 1.1;
+}
+
+/* La clase larga del párrafo */
+.descripcion-carrera {
+  font-size: 1rem;
+  color: #666; /* Gris medio */
+  font-family: "Inter-Regular", sans-serif;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+/* ====== TEXTOS BACHILLERATO ====== */
+.bachillerato-title {
+  font-family: 'Inter-Bold', sans-serif;
+  font-size: 2.2rem; /* Más grande */
+  font-weight: 800; /* Extra bold */
+  color: #444444; /* Gris oscuro, NO azul */
+  margin-top: 10px;
+  line-height: 1.1;
+}
+.bachillerato-subtitle {
+  font-size: 1.2rem; /* Más grande */
+  font-weight: 400; /* Normal */
+  color: #444444; /* Gris oscuro, NO azul */
+  margin-top: 10px;
+  line-height: 1.1;
+}
+.bachillerato-subtitle span { 
+  font-weight: 800; /* Extra bold */ 
+}
+/* La clase larga del párrafo */
+.descripcion-bachillerato {
+  font-size: 1rem;
+  color: #666; /* Gris medio */
+  font-family: "Inter-Regular", sans-serif;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+/* Estilos para las negritas/itálicas dentro del texto */
+.descripcion-bachillerato p {
+  font-weight: 700; /* Más negrita */
+  font-style: italic;
+  color: #444; /* Oscuro para resaltar */
+}
+/* global.css */
+
+.bachillerato-imgderecha-section {
+    display: flex; /* Habilita Flexbox */
+      background: #ffffff; /* Fondo claro */
+  width: 100%;
+  min-height: 500px;
+  position: relative;  
+  align-items: center;
+  justify-content: center;
+  gap: 20px; /* Más espacio entre imagen y texto */
+  padding: 48px 20px;
+  box-sizing: border-box; 
+}
+
+/* Opcional: Estilo para que el texto ocupe espacio, si es necesario */
+.contenido-bachillerato-imgderecha {
+    /* Permite que el contenido del texto se ajuste y no se estire excesivamente */
+    flex: 1; 
+      display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+  max-width: 480px; /* Ancho máximo para que el texto no se estire demasiado */
+  width: 100%;
+  padding-left: 40px;
+}
+
+/* Opcional: Ajuste responsive para que en móvil vuelvan a apilarse (verticalmente) */
+@media (max-width: 768px) {
+    .bachillerato-imgderecha-section {
+        /* En dispositivos pequeños, vuelve a la dirección normal (vertical) */
+        flex-direction: column; 
+        text-align: center;
+    }
+}
+/* ====== BOTÓN ====== */
+.inscr-bete-con-fernanda {
+  width: 100%; /* Ancho completo del contenedor de texto */
+  display: block;
+  padding: 16px 32px;
+  font-size: 1.2rem;
+  font-family: "Inter-Bold", sans-serif;
+  font-weight: 700;
+  color: #304057; /* Azul oscuro grisáceo */
+  background: #fff;
+  border: 2px solid #304057; /* Borde igual al texto */
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.inscr-bete-con-fernanda:hover {
+  background: #304057;
+  color: #fff;
+}
+
+/* ====== RESPONSIVE (Móvil) ====== */
+@media (max-width: 900px) {
+  .licenciatura-selector-section {
+    flex-direction: column; /* Apilar verticalmente */
+    text-align: center;
+    padding: 40px 20px;
+    gap: 30px;
+  }
+
+  .intro-britney-graduada-1 {
+    max-width: 280px; /* Imagen más pequeña en móvil */
+  }
+
+  .contenido-carreras {
+    align-items: center; /* Centrar todo en móvil */
+  }
+  
+  .elige-presencial-u-online {
+    font-size: 1.8rem;
+  }
+}
+
+/* ====== INSCRIBETE YA SECTION STYLES ====== */
+.inscribete-ya-section { 
+  font-family: "Poppins-800", sans-serif;
+  width: 100%;
+  min-height: 480px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 55px 30px;
+}
+.inscribete-ya {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #232323;
+  margin-bottom: 5%;
+}
+.todas-las-carreras-incluyen-titulaci-n-autom-tica {
+  font-size: 2.8rem;
+  color: #232323;
+  text-align: center;
+  font-family: "Inter-Regular", sans-serif;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.todas-las-carreras-incluyen-titulaci-n-autom-tica-span {
+  font-size: 2.8rem;
+  font-style: italic; 
+  font-weight: 500;
+}
+.todas-las-carreras-incluyen-titulaci-n-autom-tica-span3 {
+  font-size: 2.8rem;
+  font-weight: 700; 
+  display: block;
+  margin-top: 4px;
+}
+/* --- RESPONSIVE (Tablets y Laptops pequeños) --- */
+@media (max-width: 992px) {
+  .inscribete-ya-section {
+    min-height: 400px;
+    gap: 24px;
+  }
+  .inscribete-ya,
+  .todas-las-carreras-incluyen-titulaci-n-autom-tica,
+  .todas-las-carreras-incluyen-titulaci-n-autom-tica-span,
+  .todas-las-carreras-incluyen-titulaci-n-autom-tica-span3 {
+    font-size: 2.2rem; /* Reducción ligera */
+  }
+}
+/* --- RESPONSIVE (Móviles) --- */
+@media (max-width: 600px) {
+  .inscribete-ya-section {
+    min-height: auto; /* Altura automática para que no quede mucho espacio vacío */
+    padding: 60px 20px; /* Padding más ajustado */
+    gap: 20px;
+  }
+  .inscribete-ya {
+    font-size: 1.8rem; /* Tamaño mucho más manejable en móvil */
+    margin-bottom: 15px; /* Cambiado de % a px para mayor control */
+  } 
+  .todas-las-carreras-incluyen-titulaci-n-autom-tica,
+  .todas-las-carreras-incluyen-titulaci-n-autom-tica-span,
+  .todas-las-carreras-incluyen-titulaci-n-autom-tica-span3 {
+    font-size: 1.4rem; /* Texto legible sin romper la pantalla */
+  }  
+  .todas-las-carreras-incluyen-titulaci-n-autom-tica-span3 {
+    margin-top: 8px; /* Un poco más de aire entre líneas en móvil */
+  }
+}
+
+
+/* ====== CONOCE TU CAMPUS STYLES ====== */ 
+.conoce-nuestro-campus-section { 
+  width: 100%;
+  position: relative;
+  height: 30%;        /* alto del hero/carrusel */
+}
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .conoce-nuestro-campus-section {
+    height: 28rem; /* más bajito en móvil */
+  }
+
+  .slide img {
+    height: 28rem;
+  }
+}
+/* --- ESTILOS DEL BOTÓN "CONOCE NUESTRO CAMPUS" --- */
+/* --- ESTILOS DEL BOTÓN "CONOCE NUESTRO CAMPUS" (Sólo Texto) --- */
+.conoce-campus-button {
+    position: absolute;
+    /* Posicionamiento: Centrado horizontalmente y ligeramente hacia abajo */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra el botón perfectamente */
+    z-index: 6; 
+    
+    /* 🚀 CAMBIOS CLAVE PARA QUITAR EL FONDO */
+    background-color: transparent; /* Fondo transparente */
+    border: none; /* Eliminar borde */
+    box-shadow: none; /* Eliminar sombra */
+    
+    /* Estilos del Texto */
+    padding: 15px 30px; /* Mantener padding para área de clic */
+    color: white; /* Color del texto (ajusta según el contraste de tus imágenes) */
+    font-size: 5rem;
+    font-weight: 1000;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+    width:100%;
+}
+
+.conoce-campus-button:hover {
+    color: var(--orange-accent); /* 🚀 El texto cambia de color al pasar el mouse */
+    transform: translate(-50%, -50%) scale(1.05); /* Ligeramente más grande */
+    background-color: rgba(255, 255, 255, 0.1); /* Opcional: un toque sutil de fondo para resaltar el área de clic */
+}
+
+/* Opcional: Para móvil, hacerlo más pequeño */
+@media (max-width: 768px) {
+    .conoce-campus-button {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+}
+
+/* ====== CERTIFICACIONES ====== */
+.certificaciones-section {
+  display: flex;
+  justify-content: center;      /* Centra horizontalmente */
+  align-items: center;          /* Centra verticalmente */
+  gap: 2.5rem;                  /* Espacio entre imágenes */
+  padding: 80px 20px 80px 20px; /* Espacio alrededor */
+  flex-wrap: wrap;              /* Permite bajar si no caben */
+}
+
+
+.certificaciones-section img {
+  max-height: 5rem;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+
+/* 📱 Versión móvil: imágenes en columna */
+@media (max-width: 768px) {
+  .certificaciones-section {
+    flex-direction: column;     /* 🔹 Las acomoda una debajo de otra */
+    gap: 1.25rem;               /* Espaciado vertical */
+  }
+}
+
+
+/* ====== FOOTER ESTILOS ====== */
+.footer-section {
+  background: #213e67;
+  width: 100%;
+  position: relative;
+  top: auto;
+  padding: 3% 5% 3% 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  box-sizing: border-box; /* 🛡️ Evita que los paddings sumen más del ancho total */
+}
+
+/* LOGO */
+.logo-blanco-removebg-preview-1-1 {
+  display: block;
+  max-width: 180px;
+  width: 100%;
+  object-fit: contain;
+  aspect-ratio: 261/82;
+  margin-bottom: 0.75rem;
+}
+
+/* CONTACTO */
+.contacto {
+  flex: 1 1 260px;
+  color: #ffffff;
+  text-align: left;
+  font-family: "Inter-Bold", sans-serif;
+  letter-spacing: -0.019em;
+  font-weight: 500;
+  min-width: 260px;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+  gap: 0.5rem;
+}
+
+.item span {
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+/* LINKS */
+.footer-links {
+  flex: 2 1 320px;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.links-column {
+  flex: 1 1 140px;
+  display: flex;
+  flex-direction: column;
+}
+
+.links-title {
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.links-options {
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.links-options:hover {
+  color: #F85018;
+}
+
+/* ====== REDES SOCIALES ====== */
+.redes-sociales-container {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+/* Línea centrada SIEMPRE */
+.line-1 {
+  border-top: 1px solid #517cba;
+  width: 100%;
+  margin: 0 auto 1rem auto;
+}
+
+/* Iconos alineados a la derecha SIN salirse del contenedor */
+.redes-sociales-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.75rem;
+  box-sizing: border-box;
+}
+
+.redes-sociales-footer-icono {
+  width: 2.3rem;
+  height: 2.3rem;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #14365b;
+  font-size: 1.125rem;
+  transition: all 0.3s ease;
+}
+
+.redes-sociales-footer-icono:hover {
+  color: #F85018;
+  transform: scale(1.1);
+    cursor: pointer;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .footer-section {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 1.5rem 3rem;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .line-1 {
+    width: 95%;
+  }
+
+  .redes-sociales-footer {
+    justify-content: center;
+    padding-right: 0;
+  }
+}
+/* global.css */
+
+.intro-britney-graduada-1 {
+    /* Agrega una transición suave al cambio de imagen/opacidad */
+    transition: opacity 0.3s ease-in-out; 
+    
+    /* ... otros estilos de tamaño ... */
+}
+
+/* Opcional: Clase para un pequeño efecto de fade-in */
+.intro-britney-graduada-1.fade-in {
+    opacity: 0.8; /* Se vuelve un poco transparente */
+}
+.highlight-text { 
+    font-weight: 700; /* Hace el texto más grueso (negrita) */
+    color: var(--orange-accent); /* Usa tu color de acento, definido en :root */
+    /* Opcional: Aumentar ligeramente el tamaño */
+    font-size: 1.05em; 
+}
+
+
+/* ====== CHATBOT FLOTANTE Y CAJA ====== */
+
+/* Contenedor principal que ancla el chat a la esquina */
+.chatbot-container {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+/* 1. Icono Flotante (Toggle) */
+.chatbot-toggle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid var(--orange-accent); /* Borde de 3px usando la variable de color */
+    padding: 3px; /* Espacio entre el borde y la imagen */
+    background-color: var(--orange-accent); /* Color de acento */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+    /* Ajusta el icono para que se vea como si fuera a abrir el chat */
+    z-index: 1001; 
+}
+
+.chatbot-toggle:hover {
+    transform: scale(1.05);
+}
+
+.chatbot-icon {
+    width: 100%; /* Ajusta la imagen al tamaño del círculo */
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%; /* La imagen también es redonda */
+}
+
+/* 2. Caja de Chat Desplegable */
+.chat-box {
+    width: 320px;
+    height: 400px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    
+    /* Posicionamiento y ocultamiento */
+    position: absolute;
+    bottom: 75px; /* Arriba del botón de toggle */
+    right: 0;
+    
+    display: none; /* ⚠️ Oculto por defecto, JS lo mostrará */
+    flex-direction: column;
+    overflow: hidden;
+    transition: opacity 0.3s ease;
+}
+
+/* Estilos de la Caja de Chat Internos */
+.chat-header {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--color-dark);
+    color: #fff;
+    padding: 10px 15px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.chat-body {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto; /* Permite el scroll de mensajes */
+    background-color: #f7f7f7;
+}
+
+.chat-footer {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+#chat-input {
+    
+    font-family: 'Poppins', sans-serif;
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+#chat-send {
+    background-color: var(--orange-accent);
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#chat-send:hover {
+    background-color: #d1512b;
+}
+
+/* Estilos para los mensajes */
+.message {
+    font-family: 'Poppins', sans-serif;
+    padding: 8px 12px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    max-width: 80%;
+    line-height: 1.4;
+}
+
+.user-message {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--orange-accent);
+    color: #fff;
+    margin-left: auto; /* Alinea los mensajes del usuario a la derecha */
+}
+
+.bot-message {
+    font-family: 'Poppins', sans-serif;
+    background-color: #eee;
+    color: #333;
+    margin-right: auto; /* Alinea los mensajes del bot a la izquierda */
+}

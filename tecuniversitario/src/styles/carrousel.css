@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #0B4C7A;
+  --color-dark: #042A51;
+  --color-accent: #F85018;
+  --orange-accent: #e86034;
+  --dark-text: #232323;
+}
+
+/* Contenedor del carrusel */
+.carousel-container {
+  width: 100%; 
+  overflow-x: auto; /* Permite el scroll horizontal */
+  scroll-behavior: smooth; /* Suaviza el movimiento */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */ 
+}
+
+/* Pista del carrusel (3 slides) */
+.carousel {
+  display: flex;
+ width: 100%;            /* 3 imágenes -> 3 * 100% */ 
+  /* animation: campus-slide 18s infinite; 🔹 Animación automática  */ 
+}
+
+/* Cada slide ocupa todo el ancho visible */
+.slide {
+  flex: 0 0 100%; 
+  /* Asegura que cada slide ocupe el 100% del ancho del contenedor */
+  min-width: 100%; 
+  scroll-snap-align: start; /* Alineación del snap */
+}
+
+.slide img {
+  width: 100%;
+  height: 100%; /* 🚀 ALTURA FIJA PARA ESCRITORIO (ajusta este valor) */
+  object-fit: cover;
+  display: block;
+  object-fit: contain;
+}
+
+/* ====== ESTILOS DE NAVEGACIÓN DEL CARRUSEL ====== */
+
+/* 1. Botones Laterales */
+.nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5; /* Por encima del carrusel pero debajo del logo */
+    background: rgba(0, 0, 0, 0.4); /* Fondo oscuro semitransparente */
+    color: white;
+    border: none;
+    padding: 15px 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    line-height: 0; /* Centra el ícono */
+    transition: background 0.3s;
+    opacity: 0.8;
+}
+
+.nav-button:hover {
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 1;
+}
+
+.prev-button {
+    left: 20px; /* Separación de la izquierda */
+    border-radius: 0 5px 5px 0;
+}
+
+.next-button {
+    right: 20px; /* Separación de la derecha */
+    border-radius: 5px 0 0 5px;
+}
+
+/* 2. Paginación (Dots Inferiores) */
+.carousel-pagination {
+    position: absolute;
+    bottom: 20px; /* Distancia desde la parte inferior */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    background-color: rgba(255, 255, 255, 0.6); /* Blanco semitransparente inactivo */
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.dot.active,
+.dot:hover {
+    background-color: var(--orange-accent); /* Blanco sólido para el activo/hover */
+    transform: scale(1.1);
+}
+/* Animación del carrusel */
+@keyframes campus-slide {
+  0%   { transform: translateX(0); }
+  30%  { transform: translateX(0); }
+
+  33%  { transform: translateX(-100%); }
+  63%  { transform: translateX(-100%); }
+
+  66%  { transform: translateX(-200%); }
+  96%  { transform: translateX(-200%); }
+
+  100% { transform: translateX(0); }
+}

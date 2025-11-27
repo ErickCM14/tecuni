@@ -31,7 +31,7 @@ export class BaseRepository {
     }
 
     async getAllWithPagination(query) {
-        const { filters, pagination, sort, order } = PaginationHelper.applyPagination(query);
-        return await PaginationHelper.paginate(this.model, filters, pagination, sort, order);
+        const { filters, pagination, sort, order, populate, fields } = PaginationHelper.applyPagination(query);
+        return await PaginationHelper.paginate(this.model, filters, pagination, sort, order, populate, fields);
     }
 }

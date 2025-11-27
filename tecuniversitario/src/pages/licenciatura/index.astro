@@ -1,0 +1,200 @@
+---
+import "/src/styles/global.css"; 
+import "/src/styles/carrousel.css";
+
+// ==========================================================
+// 🚀 CORRECCIÓN DE IMÁGENES PARA PRODUCCIÓN/DOCKER
+// Importar todos los assets con rutas relativas
+// ==========================================================
+// Logo Principal (dentro de landing-page-universidad)
+import LogoTECUNI from '/src/assets/LogoTECUNI.png';
+
+// Chatbot Icon
+import RobotIcon from '/src/assets/icono_robot_fernanda.png';
+
+// Carrusel Principal
+import PrincipalSlide1 from '/src/assets/principal_slide_1.png';
+import PrincipalSlide2 from '/src/assets/principal_slide_2.png';
+import PrincipalSlide3 from '/src/assets/principal_slide_3.png';
+
+// Imagen Licenciatura Selector
+import ImagenProfesional from '/src/assets/img_profesional.png';
+
+// Campus
+import ConoceCampus from '/src/assets/Conoce_1.png';
+
+// Certificaciones
+import LogoDGAIR from '/src/assets/LogoDGAIR.png';
+import LogoSEP from '/src/assets/LogoSEP.png';
+import LogoDGETI from '/src/assets/dgeti-seeklogo 1.png';
+
+// Footer Logo
+import LogoFooter from '/src/assets/logo-blanco-removebg-preview-1-10.png';
+
+// Nota: Se asume que este archivo está en src/pages/ y los assets en src/assets/
+---
+<head>
+ <meta charset="UTF-8" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+</head>
+
+<script src="/src/scripts/script.js"></script>
+
+
+<div class="chatbot-container" id="chatbot-container">
+    
+    <div class="chatbot-toggle" id="chatbot-toggle">
+        <img src={RobotIcon.src} alt="Chatbot AI" class="chatbot-icon"/>
+    </div>
+    
+    <div class="chat-box" id="chat-box">
+        <div class="chat-header">
+            Asistente Virtual TecUniversitario
+            <button class="chat-close" id="chat-close">×</button>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <div class="message bot-message">Hola, soy Fernanda. ¿En qué puedo ayudarte hoy?</div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chat-input" placeholder="Escribe tu mensaje..." />
+            <button id="chat-send">Enviar</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="landing-page-universidad">
+
+     <div class="principal-section"> 
+    <img class="logo-2-1" src={LogoTECUNI.src} />
+    
+    <button class="nav-button prev-button" id="principal-prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+    <button class="nav-button next-button" id="principal-next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+    
+    <div class="carousel-pagination" id="principal-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+    <div class="principal-carousel-container carousel-container" id="principal-carousel-container">
+      <div class="principal-carousel carousel">
+        <div class="principal-slide slide"><img src={PrincipalSlide1.src} /></div> 
+        <div class="principal-slide slide"><img src={PrincipalSlide2.src} /></div>
+        <div class="principal-slide slide"><img src={PrincipalSlide3.src} /></div>
+      </div>
+    </div>
+</div>
+
+     <div class="propuesta-educativa-section" > 
+      <div class="con-m-s-de-20-a-os-de-experiencia-y-m-s-120-000-alumnos-egresados" >
+        CON MÁS DE 20 AÑOS DE EXPERIENCIA Y MÁS 120,000 ALUMNOS EGRESADOS
+      </div>
+      <div class="planes-de-estudio-desarrollados-pensando-en-t">
+        Planes de estudio desarrollados pensando en tí
+      </div>
+      <div class="propuesta-educativa2">Propuesta educativa</div>
+      <div class="modo-switch">
+        <button type="button" data-mode="presencial">Presencial</button>
+        <button type="button" data-mode="online" aria-pressed="true">Online</button>
+    </div>
+   </div>
+
+<div class="licenciatura-selector-section">
+      <img class="imagen-profesionista" src={ImagenProfesional.src} alt="Graduada TecUni" />
+      <div class="contenido-carreras">
+        <div class="selector-carreras">
+          <select id="carrera" name="carrera">
+            <option value="" disabled selected>Selecciona una carrera</option>
+            <option value="administracion">Administración</option>
+            <option value="derecho">Derecho</option>
+            <option value="mercadotecnia">Mercadotecnia y publicidad</option>
+            <option value="produccion">Producción de TV y plataformas digitales</option>
+          </select>
+        </div>
+        <div class="elige-presencial-u-online">Elige presencial u Online</div>
+        <div class="descripcion-carrera">
+          Define tu camino en modalidad <span>online</span> o <span>presencial</span>.<br />
+          Nuestras licenciaturas ofrecen planes de estudio optimizados y evaluaciones prácticas, brindándote la <span>calidad y flexibilidad</span> necesarias para impulsar tu éxito profesional sin límites.
+        </div> 
+          <button class="inscr-bete-con-fernanda" type="button" id="btn_inscribete_fernanda">Inscríbete con Fernanda</button> 
+      </div>
+    </div>
+
+ <div class="inscribete-ya-section" > 
+  
+  <div class="inscribete-ya">¡INSCRIBETE YA!</div>
+  
+  <div class="todas-las-carreras-incluyen-titulaci-n-autom-tica">
+      <span>
+        <span class="todas-las-carreras-incluyen-titulaci-n-autom-tica-span">
+          Todas las carreras
+        </span>
+        <span class="todas-las-carreras-incluyen-titulaci-n-autom-tica-span2">
+          incluyen
+        </span>
+        <span class="todas-las-carreras-incluyen-titulaci-n-autom-tica-span3">
+          titulación automática
+        </span>
+      </span>
+    </div>  
+</div>
+
+</div>
+<div class="conoce-nuestro-campus-section">
+  <button class="conoce-campus-button" id="btn-conoce-campus">
+        CONOCE NUESTRO CAMPUS
+    </button>    
+            <div class="slide"><img src={ConoceCampus.src} /></div>
+</div>
+      <div class="certificaciones-section">
+    <img class="image-certificacion" src={LogoDGAIR.src} alt="Logo DGAIR" />
+    <img class="image-certificacion" src={LogoSEP.src} alt="logo SEP" />
+    <img class="image-certificacion" src={LogoDGETI.src} alt="Logo DGETI" />
+  </div>
+  
+</div>
+ <div class="footer-section">
+    <div class="contacto">
+      <img class="logo-blanco-removebg-preview-1-1" src={LogoFooter.src}/>
+      <div class="item" onclick="window.open('https://maps.app.goo.gl/DaXqceDqCYGXhhBp6', '_blank');" style="cursor: pointer;"><i class="fa-solid fa-location-dot"></i>  <span >Hamburgo 77 Col. Juárez CDMX</span></div>
+      <div class="item" onclick="window.open('mailto:info@tecuniversitario.edu.mx', '_blank');" style="cursor: pointer;"><i class="fa-regular fa-envelope"></i>  <span >info@tecuniversitario.edu.mx</span></div>
+      <div class="item"><i class="fa fa-phone"></i>  <span >5552079822</span></div>
+      <div class="item" onclick="window.open('https://wa.me/525566798593?text=Hola,%20me%20gustaría%20obtener%20información%20sobre%20las%20licenciaturas.', '_blank');" style="cursor: pointer;"><i class="fa-brands fa-whatsapp"></i>  <span >+52 1 55 6679 8593</span></div>
+      <div class="item"><i class="fa-regular fa-clock"></i>  <span >Lunes a Viernes 8-19 hrs y Sábado 8-14:30 hrs</span></div>
+    </div>
+   
+    <div class="footer-links">
+      <div class="links-column">
+        <div class="links-title">Propuesta educativa</div>
+        <div class="links">
+          <div class="links-options" onclick="window.open('https://tecuniversitario.net/licenciatura/', '_blank');">Licenciatura</div>     
+          <div class="links-options" onclick="window.open('https://tecuniversitario.net/bachillerato/', '_blank');">Bachillerato</div>
+        </div>
+      </div>    
+      <div class="links-column">
+        <div class="links-title">Legal</div>
+        <div class="links">
+          <div class="links-options" onclick="window.open('https://tecuniversitario.net/wp-content/uploads/2021/07/AVISO-DE-PRIVACIDAD.pdf', '_blank');">Aviso de privacidad</div>
+          <div class="links-options" onclick="window.open('https://tecuniversitario.net/validez-oficial/', '_blank');">Validez oficial</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="redes-sociales-container"> 
+      <div class="line-1"></div>
+      <div class="redes-sociales-footer"> 
+        <div class="redes-sociales-footer-icono" onclick="window.open('https://www.facebook.com/SomosTecUni', '_blank');"><i class="fa-brands fa-facebook-f"></i></div>
+        <div class="redes-sociales-footer-icono" onclick="window.open('https://www.instagram.com/somostecuni/', '_blank');"><i class="fa-brands fa-instagram"></i> </div>
+                <div class="redes-sociales-footer-icono" onclick="window.open('https://www.tiktok.com/@tecuniversitario', '_blank');"><i class="fa-brands fa-tiktok"></i></div>
+        <div class="redes-sociales-footer-icono" onclick="window.open('https://x.com/tec_uni', '_blank');"><i class="fa-solid fa-x"></i></div> 
+        
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,197 @@
+---
+import "/src/styles/global.css"; 
+import "/src/styles/carrousel.css";
+
+// ==========================================================
+// 🚀 CORRECCIÓN DE IMÁGENES PARA PRODUCCIÓN/DOCKER
+// Importar todos los assets con rutas relativas
+// ==========================================================
+import RobotIcon from '/src/assets/icono_robot_fernanda.png';
+import BachSlide1 from '/src/assets/bach_principal_slide_1.png';
+import BachSlide2 from '/src/assets/bach_principal_slide_2.png';
+import BachSlide3 from '/src/assets/bach_principal_slide_3.png';
+import BachOnlineImg from '/src/assets/img_bachillerato_tusreglas.png';
+import BachPresencialImg from '/src/assets/img_bachillerato_presencial.png';
+import BachSabatinoImg from '/src/assets/img_bachillerato_sabatino.png';
+import LogoDGAIR from '/src/assets/LogoDGAIR.png';
+import LogoSEP from '/src/assets/LogoSEP.png';
+import LogoDGETI from '/src/assets/dgeti-seeklogo 1.png';
+import LogoFooter from '/src/assets/logo-blanco-removebg-preview-1-10.png';
+// Nota: Se asume que este archivo está en src/pages/ y los assets en src/assets/
+---
+<head>
+ <meta charset="UTF-8" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+</head>
+
+<script src="/src/scripts/script.js"></script>
+
+
+<div class="chatbot-container" id="chatbot-container">
+    
+    <div class="chatbot-toggle" id="chatbot-toggle">
+        <img src={RobotIcon.src} alt="Chatbot AI" class="chatbot-icon"/>
+    </div>
+    
+    <div class="chat-box" id="chat-box">
+        <div class="chat-header">
+            Asistente Virtual TecUniversitario
+            <button class="chat-close" id="chat-close">×</button>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <div class="message bot-message">Hola, soy Fernanda. ¿En qué puedo ayudarte hoy?</div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chat-input" placeholder="Escribe tu mensaje..." />
+            <button id="chat-send">Enviar</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="landing-page-universidad">
+
+     <div class="principal-section"> 
+        
+    <button class="nav-button prev-button" id="principal-prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+    <button class="nav-button next-button" id="principal-next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+    
+    <div class="carousel-pagination" id="principal-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+    <div class="principal-carousel-container carousel-container" id="principal-carousel-container">
+      <div class="principal-carousel carousel">
+        <div class="principal-slide slide"><img src={BachSlide1.src} /></div> 
+        <div class="principal-slide slide"><img src={BachSlide2.src} /></div>
+        <div class="principal-slide slide"><img src={BachSlide3.src} /></div>
+      </div>
+    </div>
+</div>
+
+     <div class="propuesta-educativa-section" > 
+      <div class="con-m-s-de-20-a-os-de-experiencia-y-m-s-120-000-alumnos-egresados" >
+        EL 70% DE NUESTROS ALUMNOS SE GRADÚA. 
+      </div>
+            <div class="con-m-s-de-20-a-os-de-experiencia-y-m-s-120-000-alumnos-egresados" >
+        AQUÍ NADIE SE QUEDA A MEDIAS.
+      </div>
+      <div class="planes-de-estudio-desarrollados-pensando-en-t">
+        Planes de estudio desarrollados pensando en tí
+      </div>
+
+      <div class="propuesta-educativa2" style="padding-top: 20px;">FICHA TÉCNICA</div>
+        <div class="todas-las-carreras-incluyen-titulaci-n-autom-tica">
+      <span>       
+        <span class="todas-las-carreras-incluyen-titulaci-n-autom-tica-span2">
+          Todas nuestras modalidades incluyen:
+        </span>
+        <span class="todas-las-carreras-incluyen-titulaci-n-autom-tica-span3">
+          Título como técnico en administración
+        </span>
+      </span>
+    </div> 
+   </div>
+
+<div class="licenciatura-selector-section">
+      <img class="imagen-profesionista" src={BachOnlineImg.src} alt="Graduada TecUni" />
+      <div class="contenido-carreras">
+        <div class="bachillerato-title">Tu Bachillerato tus Reglas.</div>
+        <div class="bachillerato-subtitle"><span>100% Online</span> 15 meses</div>
+        <div class="descripcion-bachillerato">
+         <ul>
+          <li>Incluye 5 Diplomados</li>
+          <li>Online</li>
+          <li>Plataforma abierta 24/7</li>
+          </ul>
+          <p>Estudias a tu ritmo, cuando puedes y donde quieres.</p>
+        </div> 
+          <button class="inscr-bete-con-fernanda" type="button" id="btn_inscribete_fernanda">Inscríbete con Fernanda</button> 
+      </div>
+    </div>
+
+<div class="bachillerato-imgderecha-section">
+      
+      <div class="contenido-bachillerato-imgderecha">
+        <div class="bachillerato-title">Bachillerato Presencial.</div>
+        <div class="bachillerato-subtitle"><span>Lunes a Jueves</span> 18 meses</div>
+        <div class="descripcion-bachillerato">
+         <ul>
+          <li>Incluye 5 Diplomados</li> 
+          <li>Cero Exámenes</li>
+          </ul>
+          <p>Avanza con claridad y seguridad hacia tu graduación.</p>
+        </div> 
+          <button class="inscr-bete-con-fernanda" type="button" id="btn_inscribete_fernanda2">Inscríbete con Fernanda</button> 
+      </div>
+      <img class="imagen-profesionista" src={BachPresencialImg.src} alt="Graduada TecUni" />
+    </div>
+
+    <div class="licenciatura-selector-section">
+      <img class="imagen-profesionista" src={BachSabatinoImg.src} alt="Graduada TecUni" />
+      <div class="contenido-carreras">
+        <div class="bachillerato-title">Clases una vez a la semana.</div>
+        <div class="bachillerato-subtitle"><span>Sabatino</span> 18 meses</div>
+        <div class="descripcion-bachillerato">
+         <ul>
+          <li>Incluye 5 Diplomados</li> 
+          <li>Acceso a plataforma 24/7</li>
+          </ul>
+          <p>Si trabajas invierte un día a la semana en tu futuro.</p>
+        </div> 
+          <button class="inscr-bete-con-fernanda" type="button" id="btn_inscribete_fernanda3">Inscríbete con Fernanda</button> 
+      </div>
+    </div>
+
+      <div class="certificaciones-section">
+    <img class="image-certificacion" src={LogoDGAIR.src} alt="Logo DGAIR" />
+    <img class="image-certificacion" src={LogoSEP.src} alt="logo SEP" />
+    <img class="image-certificacion" src={LogoDGETI.src} alt="Logo DGETI" />
+  </div>
+  
+</div>
+ <div class="footer-section">
+    <div class="contacto">
+      <img class="logo-blanco-removebg-preview-1-1" src={LogoFooter.src}/>
+      <div class="item" onclick="window.open('https://maps.app.goo.gl/DaXqceDqCYGXhhBp6', '_blank');" style="cursor: pointer;"><i class="fa-solid fa-location-dot"></i>  <span >Hamburgo 77 Col. Juárez CDMX</span></div>
+      <div class="item" onclick="window.open('mailto:info@tecuniversitario.edu.mx', '_blank');" style="cursor: pointer;"><i class="fa-regular fa-envelope"></i>  <span >info@tecuniversitario.edu.mx</span></div>
+      <div class="item"><i class="fa fa-phone"></i>  <span >5552079822</span></div>
+      <div class="item" onclick="window.open('https://wa.me/525566798593?text=Hola,%20me%20gustaría%20obtener%20información%20sobre%20las%20licenciaturas.', '_blank');" style="cursor: pointer;"><i class="fa-brands fa-whatsapp"></i>  <span >+52 1 55 6679 8593</span></div>
+      <div class="item"><i class="fa-regular fa-clock"></i>  <span >Lunes a Viernes 8-19 hrs y Sábado 8-14:30 hrs</span></div>
+    </div>
+   
+    <div class="footer-links">
+      <div class="links-column">
+        <div class="links-title">Propuesta educativa</div>
+        <div class="links">
+          <div class="links-options" onclick="window.open('https://tecuniversitario.net/licenciatura/', '_blank');">Licenciatura</div>     
+          <div class="links-options" onclick="window.open('https://tecuniversitario.net/bachillerato/', '_blank');">Bachillerato</div>
+        </div>
+      </div>    
+      <div class="links-column">
+        <div class="links-title">Legal</div>
+        <div class="links">
+          <div class="links-options" onclick="window.open('https://tecuniversitario.net/wp-content/uploads/2021/07/AVISO-DE-PRIVACIDAD.pdf', '_blank');">Aviso de privacidad</div>
+          <div class="links-options" onclick="window.open('https://tecuniversitario.net/validez-oficial/', '_blank');">Validez oficial</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="redes-sociales-container"> 
+      <div class="line-1"></div>
+      <div class="redes-sociales-footer"> 
+        <div class="redes-sociales-footer-icono" onclick="window.open('https://www.facebook.com/SomosTecUni', '_blank');"><i class="fa-brands fa-facebook-f"></i></div>
+        <div class="redes-sociales-footer-icono" onclick="window.open('https://www.instagram.com/somostecuni/', '_blank');"><i class="fa-brands fa-instagram"></i> </div>
+                <div class="redes-sociales-footer-icono" onclick="window.open('https://www.tiktok.com/@tecuniversitario', '_blank');"><i class="fa-brands fa-tiktok"></i></div>
+        <div class="redes-sociales-footer-icono" onclick="window.open('https://x.com/tec_uni', '_blank');"><i class="fa-solid fa-x"></i></div> 
+      </div>
+    </div>
+  </div>

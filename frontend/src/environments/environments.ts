@@ -11,6 +11,7 @@ export const environment = {
     users: 'users',
     faqs: 'questionnaire',
     notifications: 'push-notification',
+    conversations: 'chatbot/conversations',
   },
   faqsUrl: 'http://localhost:3000/faqs'
 };
